@@ -322,9 +322,9 @@ function finishLevel() {
   speak(`There ${verb} ${def.count} ${noun}.`);
   buildLevelBar();
   if (completed.size >= NUMBERS.length) {
-    setTimeout(showFinishOverlay, 4500);
+    setTimeout(showFinishOverlay, 6500);
   } else {
-    setTimeout(() => loadLevel(levelIdx + 1), 4500);
+    setTimeout(() => loadLevel(levelIdx + 1), 6500);
   }
 }
 
