@@ -321,7 +321,25 @@ function finishLevel() {
   const verb = def.count === 1 ? "is" : "are";
   speak(`There ${verb} ${def.count} ${noun}.`);
   buildLevelBar();
-  setTimeout(() => loadLevel(levelIdx + 1), 4500);
+  if (completed.size >= NUMBERS.length) {
+    setTimeout(showFinishOverlay, 4500);
+  } else {
+    setTimeout(() => loadLevel(levelIdx + 1), 4500);
+  }
+}
+
+const overlay = document.getElementById("finishOverlay")!;
+(document.getElementById("overlayAgain") as HTMLButtonElement).addEventListener("click", () => {
+  completed.clear();
+  overlay.classList.add("hidden");
+  loadLevel(0);
+});
+(document.getElementById("overlayMore") as HTMLButtonElement).addEventListener("click", () => {
+  location.href = "/kid-games/";
+});
+function showFinishOverlay() {
+  overlay.classList.remove("hidden");
+  speak("Yay! You learnt all the numbers!");
 }
 
 let speechReady = false;
